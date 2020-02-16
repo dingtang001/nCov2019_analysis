@@ -71,6 +71,11 @@ def aggDaily(df):
     to_names = [field for field in ['confirmed', 'suspected', 'cured', 'dead']]
     out = out.rename(columns=dict([('city_' + d, 'cum_' + d) for d in to_names]))
     out = out.drop(columns=['cum_suspected'])   # the suspected column from csv is not reliable, may keep this when the upstream problem is solved
+   # 
+    out = out.drop(columns=['provinceEnglishName'])
+    out = out.drop(columns=['province_zipCode'])
+    out = out.drop(columns=['cityEnglishName'])
+    out = out.drop(columns=['city_zipCode'])
 
     #out = remove_abnormal_dates(out)
     out = add_daily_new(out)  # add daily new cases
